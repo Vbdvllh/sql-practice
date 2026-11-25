@@ -56,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     conn = build_in_memory_db()
-    targets = sorted(PROBLEMS_DIR.rglob("*.sql")) if args.all else ([Path(args.file)] if args.file else [])
+    targets = sorted(PROBLEMS_DIR.rglob("*.sql")) if args.all else ([Path(args.file).resolve()] if args.file else [])
     if not targets:
         parser.error("Provide a .sql file path or pass --all")
 
